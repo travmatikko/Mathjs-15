@@ -7,6 +7,15 @@
  * Повертає випадковий пароль.
  */
 function generateRandomPassword(length) {
+  let password = "";
+  let characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    const randomSymbol = characters.charAt(randomIndex);
+    password += randomSymbol;
+  }
+  return password;
   // Створюємо порожній рядок для збереження паролю.
   // Створюємо рядок characters "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789" з доступних символів для паролю.
   // За допомогою циклу for проходимось по кожному символу рядка characters
@@ -27,6 +36,13 @@ console.log(generateRandomPassword(8));
  * Поверне: Площу кола.
  */
 function calculateCircleArea(radius) {
+  if (typeof radius !== "number") {
+    console.log("Error");
+    return null;
+  } else {
+    const sCircle = Math.PI * Math.pow(radius, 2);
+    return sCircle;
+  }
   // Перевірка, чи переданий радіус є числом.
   // Якщо радіус не є числом, виводимо в консоль повідомлення про помилку.
   // Повертаємо null, щоб показати, що обчислення не можливе.
@@ -46,6 +62,17 @@ console.log(calculateCircleArea(5));
  * Поверне: Об'єкт, що містить мінімальне та максимальне число.
  */
 function findMinMax(numbers) {
+  if (!Array.isArray(numbers)) {
+    console.log('"Помилка"');
+    return null;
+  } else {
+    const min = Math.min(...numbers);
+    const max = Math.max(...numbers);
+
+    const result = { min: min, max: max };
+
+    return result;
+  }
   // Перевіряємо, чи переданий параметр є масивом.
   // Якщо переданий параметр не є масивом, виводимо в консоль повідомлення про помилку.
   // Повертаємо null, що свідчить про неможливість обробки вхідних даних.
@@ -67,6 +94,14 @@ console.log(findMinMax([5, 2, 9, 1, 5, 6, 7, 8]));
  * Поверне: Довжину гіпотенузи.
  */
 function calculateHypotenuse(a, b) {
+  if (typeof a !== "number" && typeof b !== "number") {
+    console.log("Помилка");
+    return null;
+  } else {
+    const hypot = Math.hypot(a, b);
+    // const hypot = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+    return hypot;
+  }
   // Перевіряємо, чи довжини катетів є числами. Оператор typeof повертає рядок, що вказує тип непустого операнда.
   // Якщо довжини катетів не є числами, виводимо в консоль повідомлення про помилку.
   // Повертаємо null, що свідчить про неможливість обробки вхідних даних.
@@ -86,6 +121,22 @@ console.log(calculateHypotenuse(3, 4));
  *  Поверне: Об'єкт з заокругленими значеннями числових властивостей.
  */
 function roundObjectValues(obj) {
+  if (typeof obj !== "object" || obj === null) {
+    console.log("Помилка: аргумент має бути об'єктом");
+    return null;
+  } else {
+    const entries = Object.entries(obj);
+
+    const roundEntries = entries.map(([key, value]) => {
+      if (typeof value === "number") {
+        return [key, Math.round(value)];
+      } else {
+        return [key, value];
+      }
+    });
+
+    return Object.fromEntries(roundEntries);
+  }
   // Перевіряємо, чи аргумент є об'єктом.
   // Також перевіряємо, що аргумент не є null.
   // Якщо аргумент не є об'єктом або є null, виводимо повідомлення "Помилка: аргумент має бути об'єктом".
@@ -119,6 +170,13 @@ console.log(roundObjectValues(myObject));
  * Поверне: Об'єм циліндра.
  */
 function calculateVolumeCylinder(radius, height) {
+  if (typeof radius !== "number" || typeof height !== "number") {
+    console.log("Помилка");
+    return null;
+  } else {
+    const volCylinder = Math.PI * Math.pow(radius, 2) * height;
+    return Math.ceil(volCylinder);
+  }
   // Перевіряємо, чи є радіус і висота числами. Якщо хоча б один з аргументів не є числом, виводимо повідомлення про помилку в консоль.
   // Повертаємо null, що свідчить про неможливість обробки вхідних даних.
   // Обчислюємо об'єм циліндра за формулою V = PI * r^2 * h, де PI - число Пі, r - радіус, h - висота.
